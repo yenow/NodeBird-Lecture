@@ -1,0 +1,34 @@
+{
+  "name": "nodebird-lecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yenow/NodeBird-Lecture.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yenow/NodeBird-Lecture/issues"
+  },
+  "homepage": "https://github.com/yenow/NodeBird-Lecture#readme",
+  "dependencies": {
+    "next": "^9.5.5",
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.4",
+    "prettier": "2.3.2"
+  }
+}
