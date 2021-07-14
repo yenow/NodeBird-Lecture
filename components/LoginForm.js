@@ -7,9 +7,12 @@ import useInput from '../hooks/useInput';
 const LoginForm = () => {
   const [id, onChangeId] = useInput('');
   const [password, onChangePassword] = useInput('');
+
   const onSubmitForm = useCallback(() => {
+    // antd서는 e.prevent 사용하지 않는다
     console.log({
-      id, password,
+      id,
+      password,
     });
   }, [id, password]);
 
@@ -23,11 +26,23 @@ const LoginForm = () => {
       <div>
         <label htmlFor="user-password">비밀번호</label>
         <br />
-        <Input name="user-password" value={password} onChange={onChangePassword} type="password" required />
+        <Input
+          name="user-password"
+          value={password}
+          onChange={onChangePassword}
+          type="password"
+          required
+        />
       </div>
       <div style={{ marginTop: '10px' }}>
-        <Button type="primary" htmlType="submit" loading={false}>로그인</Button>
-        <Link href="/signup"><a><Button>회원가입</Button></a></Link>
+        <Button type="primary" htmlType="submit" loading={false}>
+          로그인
+        </Button>
+        <Link href="/signup">
+          <a>
+            <Button>회원가입</Button>
+          </a>
+        </Link>
       </div>
     </Form>
   );
