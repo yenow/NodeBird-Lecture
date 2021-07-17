@@ -1,41 +1,34 @@
 {
-  "name": "nodebird-lecture",
+  "name": "react-nodebird-front",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
-    "build": "next build"
+    "dev": "next -p 3060",
+    "build": "next build",
+    "start": "next start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yenow/NodeBird-Lecture.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yenow/NodeBird-Lecture/issues"
-  },
-  "homepage": "https://github.com/yenow/NodeBird-Lecture#readme",
+  "author": "ZeroCho",
+  "license": "MIT",
   "dependencies": {
-    "@ant-design/icons": "^4.2.2",
     "antd": "^4.6.6",
     "next": "^9.5.4",
-    "next-redux-wrapper": "^7.0.2",
+    "next-redux-wrapper": "^6.0.2",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
     "react-slick": "^0.27.11",
-    "redux": "^4.1.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
-    "eslint": "^7.1.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^4.0.4",
-    "prettier": "2.3.2"
+    "eslint": "^7.10.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.21.3",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.44.2"
   }
 }

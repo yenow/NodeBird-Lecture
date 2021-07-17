@@ -10,11 +10,17 @@
     "browser": true,
     "node": true
   },
-  "extends": ["plugin:react/recommended","eslint:recommended", "plugin:prettier/recommended"],
-  "plugins": ["prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "import",
+    "react-hooks"
+  ],
   "rules": {
-    "react/react-in-jsx-scope" : "warn",
-    "prettier/prettier": "warn",
-    "no-unused-vars" : "warn"
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "no-console": "off"
   }
 }
