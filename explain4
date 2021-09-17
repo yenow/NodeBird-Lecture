@@ -2,14 +2,46 @@
 
 ## redux-thunk 이해하기
 
-- 리덕스 미들웨어 : 리덕스의 기능을 향상, 없던 기능 추가
-- redux-thunk : 리덕스의 비동기 액션을 dispatch할수 있도록 도와줌
-- redux-saga :
+    - 리덕스 미들웨어 : 리덕스의 기능을 향상, 없던 기능 추가
+    - redux-thunk : 리덕스의 비동기 액션을 dispatch할수 있도록 도와줌
+    - redux-saga : redux-thunk에 보다 확장된 기능을 제공
 
-- 비동기액션 : 기존에는 비동기 액션이 불가능했다.
-- 비동기액션의 장점 : 하나의 액션에 dispatch를 여러개 할 수 있다. 예를들어 'A 액션이 성공하면 B액션, A액션이 실패하면 로그' 이런석으로 가능하다.
+    - 비동기액션 : 기존에는 비동기 액션이 불가능했다.
+    - 비동기액션의 장점 : 하나의 액션에 dispatch를 여러개 할 수 있다. 예를들어 'A 액션이 성공하면 B액션, A액션이 실패하면 로그' 이런석으로 가능하다.
 
-```
-npm i redux-thunk
-```
+    ```
+    npm i redux-thunk
+    ```
 
+    ▫ redux-thunk
+
+        ex)
+        const loggerMiddelware = ({dispatch, getState}) => (next) => (action) => {
+            console.log(action);
+            return next(action);
+        }
+
+        const configureStore = () => {
+            const middlewares = [thunkMiddleware, loggerMiddelware];     // 리덕스의 기능을 미들웨어로 확장
+
+        composeWithDevTools 이 함수도 DevTools미들웨어가 있는데, 그게 들어있는것
+
+    ▫ redux-saga
+
+        0. redux-saga 설치
+            ```
+            npm i redux-saga
+            ```
+
+        1. sagas 폴더 생성 및 index.js 파일 생성
+
+        2. gennerator 문법   |    ex) export default  function* rootSaga() { }
+            - 중단점이 있는 함수
+            - 무한 함수를 만들수 있음
+
+        3. axios 설치
+            ```
+            npm i axios
+            ```
+
+        * gennerator와 yield가 많으면 테스트가 편하다

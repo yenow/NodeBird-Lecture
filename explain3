@@ -1,0 +1,87 @@
+# 3강 Redux 연동하기
+
+
+## 미들웨어와 리덕스 데브툴즈
+
+▫ 리덕스 데브툴즈
+npm i redux-devtools-extension  :
+
+▫ 리액트 미들웨어란 무엇인가?
+
+---
+
+
+## 리듀서 쪼개기
+
+▫ combines 함수를 통해 가능
+
+useCallback : 컴포넌트안의 함수 재사용을 위함
+useRef : 실제 DOM에 접근하기 위해서 씀
+
+
+
+
+---
+
+
+
+
+## 이미지 캐루셀 구현하기 (react-slick)
+
+▫ folder를 import하면 자동으로 index를 불러옴
+ex) import PostImages from './PostImages';
+
+▫ style-component 꿀팁
+ex)
+```
+const Indicator = styled.div`
+    text-align: center;
+
+    & > div {
+    width: 75px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 15px;
+    background: #313131;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    }
+    `;
+```
+이 예시처럼 상위컴포넌트 아래는 태그 이름이나 className으로 작성하는게 좋음
+
+
+
+
+---
+
+
+
+
+## 글로벌 스타일과 컴포넌트 폴더구조
+
+▫ 글로벌 스타일
+
+ex)
+const Global = createGlobalStyle`
+  .slick-slide {
+    display: inline-block;
+  }
+  .ant-card-cover {
+    transform: none !important;
+  }
+`
+이렇게 클래스에 정의된 css를 내가 재정의할수 있다. 이렇게 글로벌 스타일 사용하면 className이 렌더링 될 때 바뀌지 않고 그대로 적용된다.
+
+▫ 버그
+position : fix 상위에 transform : translateY 가 적용되면, 구조가 깨지는 버그
+
+▫ style.js 를 따로 만들어서 export 해주는이유
+  : 재사용성 좋음, 파일길이를 줄일수 있음
+
+▫ 전체 요약
+ - 컴포넌트 만들때는 큰부분 -> 작은부분
+ -
+
