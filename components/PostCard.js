@@ -4,21 +4,35 @@ import PropTypes from 'prop-types';
 import { RetweetOutlined, HeartTwoTone, HeartOutlined, MessageOutlined, EllipsisOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { useSelector } from 'react-redux';
 
 import CommentForm from './CommentForm';
 import PostCardContent from './PostCardContent';
-import PostImages from './PostImages';
+import PostImages from './PostImages';      // folder를 import하면 자동으로 index를 불러옴
 import FollowButton from './FollowButton';
+import {useSelector} from "react-redux";
+
+const dummyComments = [{
+  User: {
+    nickname: 'nero',
+  },
+  content: '우와 개정판이 나왔군요~',
+}, {
+  User: {
+    nickname: 'hero',
+  },
+  content: '얼른 사고싶어요~',
+}];
 
 const CardWrapper = styled.div`
   margin-bottom: 20px;
 `;
 
 const PostCard = ({ post }) => {
-  const [commentFormOpened, setCommentFormOpened] = useState(false);
-  const id = useSelector((state) => state.user.me && state.user.me.id);
+    const {user} = useSelector((state) => state.user);
+    const id = user?.id;    // user && user.id    ->   user.id가 있으면 이 값이 들어가고, 없으면 undefined가 들어감
 
+
+  const [commentFormOpened, setCommentFormOpened] = useState(false);
   const [liked, setLiked] = useState(false);
 
   const onToggleLike = useCallback(() => {
@@ -43,14 +57,12 @@ const PostCard = ({ post }) => {
             key="ellipsis"
             content={(
               <Button.Group>
-                {id && post.User.id === id
-                  ? (
-                    <>
-                      <Button>수정</Button>
-                      <Button type="danger">삭제</Button>
-                    </>
-                  )
-                  : <Button>신고</Button>}
+                  { id && id === post.User.id ? (
+                      <>
+                          <Button>수정</Button>
+                          <Button danger>삭제</Button>
+                      </>
+                  ) : (<Button>신고</Button>)}
               </Button.Group>
             )}
           >
@@ -65,13 +77,14 @@ const PostCard = ({ post }) => {
           description={<PostCardContent postData={post.content} />}
         />
       </Card>
+        {/* 댓글 부분 */}
       {commentFormOpened && (
         <>
           <CommentForm post={post} />
           <List
-            header={`${post.Comments.length} 댓글`}
+            header={`${dummyComments.length} 댓글`}
             itemLayout="horizontal"
-            dataSource={post.Comments}
+            dataSource={dummyComments}
             renderItem={(item) => (
               <li>
                 <Comment
@@ -92,14 +105,18 @@ const PostCard = ({ post }) => {
   );
 };
 
+
+
 PostCard.propTypes = {
+    // PropTypes.object.requied 해도 되지만, Object 타입을 더 자세하게 적을수있다.
   post: PropTypes.shape({
     id: PropTypes.number,
     User: PropTypes.object,
     content: PropTypes.string,
+    Images: PropTypes.arrayOf(PropTypes.shape({
+      src: PropTypes.string,
+    })),
     createdAt: PropTypes.object,
-    Comments: PropTypes.arrayOf(PropTypes.any),
-    Images: PropTypes.arrayOf(PropTypes.any),
   }),
 };
 

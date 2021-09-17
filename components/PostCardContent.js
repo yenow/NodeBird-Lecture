@@ -2,10 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
+/* 해쉬태그 컴포넌트 */
 const PostCardContent = ({ postData }) => (
   <div>
-    {postData.split(/(#[^\s#]+)/g).map((v) => {
-      if (v.match(/(#[^\s]+)/)) {
+    {postData.split(/(#[^\s]+)/g).map((v) => {
+      if (v.match(/#[^\s]+/)) {
         return (
           <Link
             href={{ pathname: '/hashtag', query: { tag: v.slice(1) } }}
