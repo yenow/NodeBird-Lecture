@@ -49,3 +49,47 @@
 ## saga 쪼개고 reducer와 연결하기
 
 ## 액션과 상태 정리하기
+
+## 바뀐 상태 적용하고 eslint 점검하기
+
+    npm i -D bable-eslint eslint-config-airbnb eslint-plugin-import
+    npm i -D eslint-plugin-react-hooks eslint-plugin-jsx-a11y
+
+
+## 게시글, 댓글 saga 작성하기
+
+    ▫ 더미데이터를 redering 할때 key값이 겹치는 경우
+
+        ```
+        npm i shortid
+        ```
+
+
+## immer 도입하기
+ - 리액트의 불변성 때문에 코드가 지저분해지는것을 막아줌
+
+ ex)
+ return produce(state, draft) => {
+    draft
+ };
+
+ ex) immer사용 예시
+ const nextState = produce(baseState, draft => {
+     draft[1].done = true
+     draft.push({title: "Tweet about it"})
+ })
+
+
+## faker로 실감나는 더미데이터 만들기
+ - 더미데이터에 들어가는 인물이름을 쉽게 만들어낼 수 있다.
+ - placeholder.com 에서도 더미데이터를 만들수 있다고함.
+ - redux-toolkit : 이것도 한번 알아보면 좋을듯
+
+
+## 인피니트 스크롤링 적용하기
+ - 스크롤 내릴때 포스트가 계속 나오는 기능 구현
+ - 맨 처음 보이는 더미데이터도 서버에서 가져와야함,
+ - 아직 백엔드 서버가 없으니 프론트에 saga를 통해서 테스트
+
+ ▫ 이렇게 계속 스크롤하다보면 데이터 양이 너무 많아서 메모리가 터져버릴수 있음
+   -> react-virtualized 라는 라이브러리를 사용하면 좋다

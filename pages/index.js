@@ -1,41 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import PostForm from '../components/PostForm';
 import PostCard from '../components/PostCard';
 import AppLayout from '../components/AppLayout';
-import {useSelector} from "react-redux";
-
-const dummy = {
-  isLoggedIn: true,
-  imagePaths: [],
-  mainPosts: [{
-    id: 1,
-    User: {
-      id: 1,
-      nickname: '제로초',
-    },
-    content: '첫 번째 게시글',
-    Images: [{
-      src: 'https://bookthumb-phinf.pstatic.net/cover/137/995/13799585.jpg?udate=20180726',
-    }, {
-      src: 'https://gimg.gilbut.co.kr/book/BN001958/rn_view_BN001958.jpg',
-    }, {
-      src: 'https://gimg.gilbut.co.kr/book/BN001998/rn_view_BN001998.jpg',
-    }]
-  }],
-};
+import { LOAD_POSTS_REQUEST } from '../reducers/post';
 
 const Home = () => {
-  const { isLoggedIn } = useSelector(state => state.user);
-  const { mainPosts } = useSelector(state => state.post);
+  const dispatch = useDispatch();
+  const { me } = useSelector((state) => state.user);
+  const { mainPosts, hasMorePost, loadPostsLoading } = useSelector((state) => state.post);
+
+  useEffect(() => {
+    dispatch({
+      type: LOAD_POSTS_REQUEST,
+    });
+  }, []);
+
+  useEffect(() => {
+    function onScroll() {
+      if (window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300) {
+        if (hasMorePost && !loadPostsLoading) {
+          dispatch({
+            type: LOAD_POSTS_REQUEST,
+            data: mainPosts[mainPosts.length - 1].id,
+          });
+        }
+      }
+    }
+    window.addEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll); // window이벤트 리스터 등록했으면, unmount될때 해제시켜줘야지 메모리 낭비가 없음
+    };
+  }, [mainPosts, hasMorePost, loadPostsLoading]);
 
   return (
     <AppLayout>
-      {isLoggedIn && <PostForm />}
-      {mainPosts.map((c) => {
-        return (
-          <PostCard key={c.id} post={c} />
-        );
-      })}
+      {me && <PostForm />}
+      {mainPosts.map((c) => (
+        <PostCard key={c.id} post={c} />
+      ))}
     </AppLayout>
   );
 };
