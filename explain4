@@ -45,3 +45,7 @@
             ```
 
         * gennerator와 yield가 많으면 테스트가 편하다
+
+## saga 쪼개고 reducer와 연결하기
+
+## 액션과 상태 정리하기
