@@ -1,0 +1,120 @@
+## 노드로 서버 구동하기
+ - 노드는 서버가 아니다. 자바스크립트 런타임이다.
+ - node에서 제공하는 http 모듈이 서버 (require)
+
+     ```
+     npm i express
+     ```
+
+## express로 라우팅하기
+
+    get : 가져오다다
+    post : 생성하다
+    put : 전체 수정
+    delete : 제거
+    patch : 부분 수정
+    options :
+    head : 헤더만 가져오기기
+
+    🎄 api 문서 툴 : swagger
+
+
+## express로 라우팅 분리하기
+
+## mysql과 시퀄라이즈 연결하기
+
+    ```
+    npm i sequelize sequelize-cli mysql2
+    ```
+
+    - `mysql2`는 node랑 mysql을 연결해주는 드라이버
+    - `sequelize`는 자바스크립트로 sql을 조작할수 있게 해주는 라이브러리
+
+    ▫ sequelize 세팅
+    1.
+    ```
+    npx sequelize init
+    ```
+
+    2. /config/config.json 에서 설정
+     - port는 기본적으로 3306으로 세팅 (mysql 기본포트)
+
+
+
+## 시퀄라이즈 sync + nodemon
+    ▫ DB 생성
+        ```
+        npx sequelize db:create
+        ```
+
+    ▫ nodemon
+     - 수정후 바로 반영안되는것을 가능하게해줌줌
+     - ex) nodemon app
+
+
+
+## 회원가입 구현하기
+    ▫ 비밀번호 암호화 (bcrypt)
+     ```
+     npm i bcrypt
+     ```
+
+
+
+## CORS 문제 해결하기
+
+    2.
+     ```
+     npm i cors
+     ```
+
+
+
+## 패스포트로 로그인하기
+ 로그인은 네이버로그인, 카카오로그인등 방법도 많고 복잡하다. 이런것들을 관리해주는것이 패스포트이다
+ ```
+ npm i passport passport-local
+ ```
+
+
+
+## 쿠키/세션과 전체 로그인 흐름
+
+ ```
+ npm i express-session
+
+ npm i cookie-parser
+ ```
+
+    ▫ DB 비밀번호나 session 키를 보호하기 위한 라이브러리(dotenv)
+     ```
+     npm i dotenv
+     ```
+
+
+
+
+##  로그인 문제 해결하기
+
+
+
+##  미들웨어로 라우터 검사하기
+
+ - app.use() 안에 들어가는것은 다 미들웨어
+
+
+## credentials로 쿠키 공유하기
+
+    - 도메인이 다르면, 쿠키가 전달이 안됨
+
+    방법
+    1. proxy
+    2.
+
+
+## 게시글 블러오기
+
+    ▫ 서버쪽에 요청을 기록
+     ```
+     npm i morgan
+     ```
